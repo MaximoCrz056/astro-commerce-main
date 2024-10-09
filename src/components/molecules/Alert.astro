@@ -1,0 +1,40 @@
+---
+import { colors } from "../../design-system/colors";
+import Text from "../atoms/Text.astro";
+
+const modalVisible = true;
+---
+
+<div
+  class={`modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ${
+    modalVisible ? "" : "hidden"
+  }`}
+  id="modal"
+>
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto">
+    <Text type="h2" color={colors.black}>Aviso Importante</Text>
+    <Text type="body" color={colors.dimBlack} class="mt-4">
+      Este sitio es solo para demostración. Todas las ventas son ficticias y no
+      se realizarán transacciones reales.
+    </Text>
+    <button
+      class="mt-6 px-4 py-2 bg-orange-400 text-white rounded-xs hover:bg-primary-dark"
+      onclick="closeModal()"
+    >
+      Entendido
+    </button>
+  </div>
+</div>
+
+<style>
+  .modal {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+</style>
+
+<script client:load>
+  function closeModal() {
+    const modal = document.getElementById("modal");
+    modal.classList.add("hidden");
+  }
+</script>
